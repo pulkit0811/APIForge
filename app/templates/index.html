@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>APIForge · REST API Testing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar"><div class="brand"><span class="brand-mark">⌁</span><span>APIForge</span><small>REST WORKBENCH</small></div><a class="docs-link" href="/docs" target="_blank">OpenAPI docs ↗</a></header>
+  <main class="shell">
+    <section class="hero"><div><p class="eyebrow">BACKEND ENGINEERING PORTFOLIO</p><h1>Ship requests with<br><em>confidence.</em></h1><p class="lede">A focused command center for testing, replaying, and monitoring your HTTP APIs.</p></div><div class="hero-stats"><div><strong id="request-count">—</strong><span>saved requests</span></div><div><strong id="health-count">—</strong><span>monitors online</span></div></div></section>
+    <section class="workspace">
+      <div class="panel request-panel">
+        <div class="panel-head"><div><p class="eyebrow">REQUEST BUILDER</p><h2 id="form-title">New request</h2></div><button class="button ghost" id="reset-button">Clear</button></div>
+        <form id="request-form">
+          <label>Name<input id="name" required maxlength="120" placeholder="e.g. Get user profile"></label>
+          <div class="form-row"><label>Method<select id="method"><option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option></select></label><label>URL<input id="url" type="url" required placeholder="https://api.example.com/users/1"></label></div>
+          <label>Headers <span class="hint">JSON object</span><textarea id="headers" rows="3" placeholder='{"Authorization":"Bearer token"}'>{}</textarea></label>
+          <label>Query parameters <span class="hint">JSON object</span><textarea id="query-params" rows="3" placeholder='{"page":"1"}'>{}</textarea></label>
+          <label>JSON body <span class="hint">optional</span></label><textarea id="body" rows="5" placeholder='{"hello":"world"}'></textarea>
+          <label class="check"><input id="monitor-enabled" type="checkbox" checked> Include in health monitoring</label>
+          <div class="form-actions"><button class="button primary" type="submit" id="save-button">Save request</button><button class="button run" type="button" id="run-button">Run now <span>↗</span></button></div>
+          <p class="form-message" id="form-message"></p>
+        </form>
+      </div>
+      <div class="panel saved-panel"><div class="panel-head"><div><p class="eyebrow">COLLECTION</p><h2>Saved requests</h2></div><span class="pill" id="collection-count">0</span></div><div id="request-list" class="request-list"></div></div>
+    </section>
+    <section class="dashboard-grid"><div class="panel health-panel"><div class="panel-head"><div><p class="eyebrow">LIVE MONITORING</p><h2>Endpoint health</h2></div><button class="button ghost" id="check-health">Check all</button></div><div id="health-list" class="health-list"></div></div><div class="panel chart-panel"><div class="panel-head"><div><p class="eyebrow">PERFORMANCE</p><h2>Response time</h2></div><span class="unit">milliseconds</span></div><div class="chart-wrap"><canvas id="latency-chart"></canvas><div id="chart-empty" class="empty">Run requests to plot latency.</div></div></div></section>
+    <section class="panel history-panel"><div class="panel-head"><div><p class="eyebrow">AUDIT TRAIL</p><h2>Request history</h2></div><span class="hint">Most recent 50 runs</span></div><div class="table-wrap"><table><thead><tr><th>Request</th><th>Method</th><th>Status</th><th>Latency</th><th>Ran at</th><th></th></tr></thead><tbody id="history-list"></tbody></table></div></section>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
